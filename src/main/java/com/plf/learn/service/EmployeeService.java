@@ -32,6 +32,10 @@ public class EmployeeService {
 		return employeeMapper.selectByPrimaryKey(id);
 	}
 	
+	public List<Employee> getAll() {
+		return employeeMapper.selectByExample(null);
+	}
+	
 	public void updateEmp(Employee employee) {
 		employeeMapper.updateByPrimaryKeySelective(employee);
 	}
