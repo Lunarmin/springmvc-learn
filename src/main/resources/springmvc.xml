@@ -28,6 +28,9 @@
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 
+	<context:property-placeholder location="classpath:out-config.properties" />
+		
+
 	<!-- 配置sprigmvc视图解析器 -->
 	<bean id="freemarkerViewResolver"
 		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">

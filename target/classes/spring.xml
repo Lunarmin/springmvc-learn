@@ -58,13 +58,25 @@
 
 	<!-- 开启@AspectJ AOP代理 -->
 	<aop:aspectj-autoproxy proxy-target-class="true" />
-	
-	<context:component-scan base-package="com.plf.learn">
-    	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-    </context:component-scan>
 
-	<!-- 引入外部文件 -->
-	<context:property-placeholder location="classpath:jdbc.properties" />
+	<context:component-scan base-package="com.plf.learn">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+	<!-- 引入外部文件 <context:property-placeholder location="classpath:jdbc.properties" 
+		/> -->
+
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:out-config.properties</value>
+				<value>classpath:jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+
 
 	<!-- 数据库连接池配置 -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
