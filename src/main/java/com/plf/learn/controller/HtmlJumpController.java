@@ -11,4 +11,9 @@ public class HtmlJumpController {
 	public String toImageHtml(){
 		return "image";
 	}
+	
+	@RequestMapping("/plupload")
+	public String toPlupload(){
+		return "plupload";
+	}
 }
