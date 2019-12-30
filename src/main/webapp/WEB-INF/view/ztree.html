@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ztree Test</title>
+<link rel="stylesheet" href="${request.contextPath}/static/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+<script type="text/javascript" src="${request.contextPath}/static/ztree/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="${request.contextPath}/static/ztree/js/jquery.ztree.core.js"></script>
+<script type="text/javascript" src="${request.contextPath}/static/ztree/js/jquery.ztree.excheck.js"></script>
+
+
+<script type="text/javascript">
+	//zTree的设置
+	var setting = {
+			check:{
+				enable:true
+			},
+			data:{
+				simpleData:{
+					enable:true
+				}
+			},
+			callback:{
+				onClick:zTreeOnClick
+			}
+	}
+
+	//选择到节点的时候打印到项目上
+	function zTreeOnClick(event, treeId, treeNode) {
+	    $("#addParent").val(treeNode.id + ", " + treeNode.name);
+	};
+	
+	//提供数据
+	var zTreeNodes = [
+		{"id":1,"pId":0,"name":"系统管理"},
+		{"id":11,"pId":1,"name":"用户管理","checked":true},
+		{"id":12,"pId":1,"name":"角色管理"},
+		{"id":2,"pId":0,"name":"货运管理"},
+		{"id":21,"pId":2,"name":"购销合同"},
+		{"id":22,"pId":2,"name":"出口报运"},
+	];
+	
+	var zTreeObj;
+	
+	//调用ztree初始化方法
+	$(function(){
+		//页面一加载，在页面上生成树
+		zTreeObj=$.fn.zTree.init($("#tree"),setting,zTreeNodes);
+		
+		//展开所有节点
+		zTreeObj.expandAll(true);
+	});
+	
+	function submitCheckedNodes(){
+		//定义数组
+		var nodes = new Array();
+		//获取到所有勾选的节点集合
+		nodes = zTreeObj.getCheckedNodes(true);
+		var str="";
+		for(i=0;i<nodes.length;i++){
+			if(str != ""){
+				str += ",";
+			}
+			str += nodes[i].id;
+		}
+		$("#moduleIds").val(str);
+	}
+	
+</script>
+</head>
+<body>
+	<h3>zTree插件的入门程序</h3>
+	
+	<!-- DOM容器，用于生产ztree数据 -->
+	<div>
+		<ul id="tree" class="ztree" style="width:230px;overflow:auto;"></ul>
+	</div>
+	
+	<input type="text" id="moduleIds"/>
+	<br>
+	<input type="button" onclick="submitCheckedNodes();" value="获取选择的菜单"/>
+	
+	
+	<input type="text" id="addParent"/>
+</body>
+</html>
