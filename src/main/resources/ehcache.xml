@@ -1,5 +1,7 @@
-<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
-   xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd">  	
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd" 
+         updateCheck="false">	
    <!-- 缓存数据要存放的磁盘地址 -->
 	<diskStore path="E:\temp\ehcache" />
 	<!-- diskStore：指定数据在磁盘中的存储位置。 
