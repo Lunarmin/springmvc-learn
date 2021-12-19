@@ -3,7 +3,7 @@
          xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd" 
          updateCheck="false">	
    <!-- 缓存数据要存放的磁盘地址 -->
-	<diskStore path="E:\temp\ehcache" />
+	<diskStore path="C:\Data\TempData\ehcache" />
 	<!-- diskStore：指定数据在磁盘中的存储位置。 
 		defaultCache：当借助CacheManager.add("demoCache")创建Cache时，EhCache便会采用<defalutCache/>指定的的管理策略 
 		以下属性是必须的：  
